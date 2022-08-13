@@ -5,7 +5,8 @@ class GodOfThunderSave
   ENTRIES = {
     name: StringValue.new(pos: 0, length: 22),
     health: Integer16Value.new(pos: 0x63),
-    jewels: Integer16Value.new(pos: 0x65)
+    jewels: Integer16Value.new(pos: 0x65),
+    score: Integer16Value.new(pos: 0x6c)
   }.freeze
 
   attr_reader :path
