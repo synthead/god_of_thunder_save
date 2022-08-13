@@ -24,10 +24,10 @@ class GodOfThunderSave
   def initialize(path)
     @path = path
 
-    set_accessors
+    read!
   end
 
-  def save!
+  def write!
     File.open(path, File::RDWR) do |file|
       ENTRIES.each do |entry_name, entry|
         memory_value = instance_variable_get(:"@#{entry_name}")
@@ -38,14 +38,14 @@ class GodOfThunderSave
     self
   end
 
-  private
-
-  def set_accessors
+  def read!
     File.open(path) do |file|
       ENTRIES.each do |entry_name, entry|
         file_value = entry.read(file)
         instance_variable_set(:"@#{entry_name}", file_value)
       end
     end
+
+    self
   end
 end
