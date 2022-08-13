@@ -93,7 +93,6 @@ Whenever `GodOfThunderSave#read!` is called, `#read` will be called on your clas
 
 Each value class is responsible for ensuring that data is read and written correctly, and can safely handle values that could possibly be incorrect or out-of-range for the save game data.
 
-
 ### Writing tests
 
 Any new feature should include tests.  They are written in RSpec and live in [`spec/`](/spec/).
