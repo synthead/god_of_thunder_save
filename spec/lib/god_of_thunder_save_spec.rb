@@ -147,6 +147,10 @@ describe GodOfThunderSave do
       end
     end
 
+    it "does not alter game data when no attributes have changed" do
+      expect { write! }.to_not change { File.read(save_game_path) }
+    end
+
     context "with a new name value" do
       let(:pos) { 0x00 }
       let(:bytes) { 22 }
