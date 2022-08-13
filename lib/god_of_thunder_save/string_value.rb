@@ -24,7 +24,7 @@ class GodOfThunderSave
     private
 
     def pad_and_truncate(string)
-      "%-#{length}.#{length}s" % string
+      string[0..length - 1].ljust(length, "\0")
     end
   end
 end
