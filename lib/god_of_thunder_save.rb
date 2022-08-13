@@ -6,6 +6,7 @@ class GodOfThunderSave
     name: StringValue.new(pos: 0, length: 22),
     health: IntegerValue.new(pos: 0x63, bytes: 2),
     jewels: IntegerValue.new(pos: 0x65, bytes: 2),
+    keys: IntegerValue.new(pos: 0x67, bytes: 1),
     score: IntegerValue.new(pos: 0x70, bytes: 4)
   }.freeze
 
