@@ -162,6 +162,17 @@ describe GodOfThunderSave do
         end
       end
 
+      context "with a name that has 22 characters" do
+        before(:each) do
+          god_of_thunder_save.name = "22 character name here"
+          write!
+        end
+
+        it "uses the original name" do
+          should eq("22 character name here")
+        end
+      end
+
       context "with a name longer than 22 characters" do
         before(:each) do
           god_of_thunder_save.name = "a very long name to be truncated"
