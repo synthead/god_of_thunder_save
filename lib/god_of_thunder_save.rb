@@ -1,6 +1,8 @@
+require "god_of_thunder_save/integer_16"
+
 class GodOfThunderSave
   ENTRIES = {
-    jewels: 0x65
+    jewels: Integer16.new(pos: 0x65)
   }.freeze
 
   attr_reader :path
@@ -14,9 +16,9 @@ class GodOfThunderSave
 
   def save!
     File.open(path, File::RDWR) do |file|
-      ENTRIES.each do |entry, pos|
-        memory_value = instance_variable_get(:"@#{entry}")
-        self.class.write_bytes(file, pos, memory_value)
+      ENTRIES.each do |entry_name, entry|
+        memory_value = instance_variable_get(:"@#{entry_name}")
+        entry.write(file, memory_value)
       end
     end
 
@@ -27,24 +29,10 @@ class GodOfThunderSave
 
   def set_accessors
     File.open(path) do |file|
-      ENTRIES.each do |entry, pos|
-        file_value = self.class.read_bytes(file, pos)
-        instance_variable_set(:"@#{entry}", file_value)
+      ENTRIES.each do |entry_name, entry|
+        file_value = entry.read(file)
+        instance_variable_set(:"@#{entry_name}", file_value)
       end
     end
-  end
-
-  def self.read_bytes(file, pos)
-    file.seek(pos)
-
-    byte_array = file.read(2)
-    byte_array.unpack("v").first
-  end
-
-  def self.write_bytes(file, pos, data)
-    data_bytes = [data].pack("v")
-
-    file.seek(pos)
-    file.write(data_bytes)
   end
 end
