@@ -4,7 +4,7 @@ require "god_of_thunder_save/string_value"
 class GodOfThunderSave
   ENTRIES = {
     name: StringValue.new(pos: 0, length: 22),
-    health: IntegerValue.new(pos: 0x63, bytes: 2),
+    health: IntegerValue.new(pos: 0x63, bytes: 1),
     magic: IntegerValue.new(pos: 0x64, bytes: 1),
     jewels: IntegerValue.new(pos: 0x65, bytes: 2),
     keys: IntegerValue.new(pos: 0x67, bytes: 1),
