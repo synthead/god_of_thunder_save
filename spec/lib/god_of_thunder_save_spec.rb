@@ -140,7 +140,7 @@ describe GodOfThunderSave do
   context "for a written file" do
     let(:write!) { god_of_thunder_save.write! }
 
-    subject(:file_data) do
+    subject(:save_game_data) do
       File.open(save_game_path) do |file|
         file.seek(pos)
         file.read(bytes)
