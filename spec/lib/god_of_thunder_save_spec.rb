@@ -52,13 +52,17 @@ describe GodOfThunderSave do
   describe "#write!" do
     subject(:write!) { god_of_thunder_save.write! }
 
-    it { should be_a(GodOfThunderSave) }
+    it "returns the GodOfThunderSave instance" do
+      should be(god_of_thunder_save)
+    end
   end
 
   describe "#read!" do
     subject(:read!) { god_of_thunder_save.read! }
 
-    it { should be_a(GodOfThunderSave) }
+    it "returns the GodOfThunderSave instance" do
+      should be(god_of_thunder_save)
+    end
   end
 
   context "for a written file" do
