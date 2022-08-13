@@ -5,6 +5,7 @@ class GodOfThunderSave
   ENTRIES = {
     name: StringValue.new(pos: 0, length: 22),
     health: IntegerValue.new(pos: 0x63, bytes: 2),
+    magic: IntegerValue.new(pos: 0x64, bytes: 1),
     jewels: IntegerValue.new(pos: 0x65, bytes: 2),
     keys: IntegerValue.new(pos: 0x67, bytes: 1),
     score: IntegerValue.new(pos: 0x70, bytes: 4)
