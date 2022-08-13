@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class GodOfThunderSave
   class StringValue
     attr_reader :pos, :length

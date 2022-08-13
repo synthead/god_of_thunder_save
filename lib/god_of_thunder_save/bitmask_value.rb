@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class GodOfThunderSave
   class BitmaskValue
     attr_reader :pos, :bitmask

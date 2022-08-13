@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class GodOfThunderSave
   class IntegerValue
     INTEGER_DIRECTIVES = {
