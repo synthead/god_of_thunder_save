@@ -97,15 +97,15 @@ Each value class is responsible for ensuring that data is read and written corre
 
 Any new feature should include tests.  They are written in RSpec and live in [`spec/`](/spec/).
 
-Most tests are high-level: a real `GodOfThunderSave` instance is created on real save game data, data is written by the instance, and the save game data is then tested itself.  The tests make use of the excellent [FakeFS](https://github.com/fakefs/fakefs) library to mock files, so the fixture data is never modified when tests are performed.
+For write tests, a real `GodOfThunderSave` instance is created on real save game data, data is written by the instance, and the save game data is then tested itself.  The tests make use of the excellent [FakeFS](https://github.com/fakefs/fakefs) library to mock files, so the fixture data is never modified when tests are performed.
 
 Here is an example of a test for writing data:
 
-https://github.com/synthead/god_of_thunder_save/blob/928491d785321b5e65b25066ac98bc96e1c73ee9/spec/lib/god_of_thunder_save_spec.rb#L64-L84
+https://github.com/synthead/god_of_thunder_save/blob/fa7e50a35024585088d12585f7c77508bf2633d0/spec/lib/god_of_thunder_save_spec.rb#L236-L246
 
-And here is an example of a test for reading data:
+For read tests, the getter methods are used to ensure that the library can correctly parse the save game data:
 
-https://github.com/synthead/god_of_thunder_save/blob/928491d785321b5e65b25066ac98bc96e1c73ee9/spec/lib/god_of_thunder_save_spec.rb#L219-L232
+https://github.com/synthead/god_of_thunder_save/blob/fa7e50a35024585088d12585f7c77508bf2633d0/spec/lib/god_of_thunder_save_spec.rb#L98-L102
 
 ### Running tests
 
