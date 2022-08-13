@@ -2,7 +2,7 @@ name: God of Thunder Save CI
 
 on: [push, pull_request]
 jobs:
-  test:
+  rspec:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
