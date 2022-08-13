@@ -15,4 +15,7 @@ Gem::Specification.new do |s|
   ]
   s.homepage    = "https://github.com/synthead/god_of_thunder_save"
   s.license     = "MIT"
+
+  s.add_development_dependency "rspec", "~> 3.11.0"
+  s.add_development_dependency "fakefs", "~> 1.8.0"
 end
