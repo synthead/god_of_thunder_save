@@ -27,6 +27,12 @@ class GodOfThunderSave
     read!
   end
 
+  def attributes
+    ENTRIES.keys.each_with_object({}) do |entry_name, hash|
+      hash[entry_name] = instance_variable_get(:"@#{entry_name}")
+    end
+  end
+
   def write!
     File.open(path, File::RDWR) do |file|
       ENTRIES.each do |entry_name, entry|
