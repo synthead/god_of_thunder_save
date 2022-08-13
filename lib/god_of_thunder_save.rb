@@ -1,8 +1,8 @@
-require "god_of_thunder_save/integer_16"
+require "god_of_thunder_save/integer_16_value"
 
 class GodOfThunderSave
   ENTRIES = {
-    jewels: Integer16.new(pos: 0x65)
+    jewels: Integer16Value.new(pos: 0x65)
   }.freeze
 
   attr_reader :path

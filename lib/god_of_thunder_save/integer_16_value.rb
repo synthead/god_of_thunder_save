@@ -1,5 +1,5 @@
 class GodOfThunderSave
-  class Integer16
+  class Integer16Value
     attr_reader :pos
 
     def initialize(pos:)
