@@ -151,12 +151,27 @@ describe GodOfThunderSave do
       let(:pos) { 0x00 }
       let(:bytes) { 22 }
 
-      before(:each) do
-        god_of_thunder_save.name = "some other name"
-        write!
+      context "with a name shorter than 22 characters" do
+        before(:each) do
+          god_of_thunder_save.name = "some other name"
+          write!
+        end
+
+        it "right-pads with null characters" do
+          should eq("some other name\0\0\0\0\0\0\0")
+        end
       end
 
-      it { should eq("some other name\0\0\0\0\0\0\0") }
+      context "with a name longer than 22 characters" do
+        before(:each) do
+          god_of_thunder_save.name = "a very long name to be truncated"
+          write!
+        end
+
+        it "truncates to 22 characters" do
+          should eq("a very long name to be")
+        end
+      end
     end
 
     context "with a new health value" do
