@@ -140,21 +140,23 @@ describe GodOfThunderSave do
   context "for a written file" do
     let(:write!) { god_of_thunder_save.write! }
 
-    subject(:save_game_data) do
-      File.open(save_game_path) do |file|
-        file.seek(pos)
-        file.read(bytes)
+    let!(:save_game_data_before) { File.read(save_game_path) }
+    let(:save_game_data_after) { File.open(save_game_path) }
+
+    subject(:save_game_data_changed) do
+      save_game_data_before.each_char.each_with_object({}) do |byte_before, changes|
+        pos = save_game_data_after.pos
+        byte_after = save_game_data_after.readchar
+
+        changes[pos] = byte_after if byte_before != byte_after
       end
     end
 
     it "does not alter game data when no attributes have changed" do
-      expect { write! }.to_not change { File.read(save_game_path) }
+      should be_empty
     end
 
     context "with a new name value" do
-      let(:pos) { 0x00 }
-      let(:bytes) { 22 }
-
       context "with a name shorter than 22 characters" do
         before(:each) do
           god_of_thunder_save.name = "some other name"
@@ -162,7 +164,26 @@ describe GodOfThunderSave do
         end
 
         it "right-pads with null characters" do
-          should eq("some other name\0\0\0\0\0\0\0")
+          should eq(
+            0x00 => "s",
+            0x02 => "m",
+            0x03 => "e",
+            0x04 => " ",
+            0x05 => "o",
+            0x06 => "t",
+            0x07 => "h",
+            0x08 => "e",
+            0x09 => "r",
+            0x0a => " ",
+            0x0b => "n",
+            0x0c => "a",
+            0x0d => "m",
+            0x0e => "e",
+            0x0f => "\0",
+            0x10 => "\0",
+            0x11 => "\0",
+            0x12 => "\0",
+          )
         end
       end
 
@@ -173,7 +194,30 @@ describe GodOfThunderSave do
         end
 
         it "uses the original name" do
-          should eq("22 character name here")
+          should eq(
+            0x00 => "2",
+            0x01 => "2",
+            0x02 => " ",
+            0x03 => "c",
+            0x04 => "h",
+            0x05 => "a",
+            0x06 => "r",
+            0x07 => "a",
+            0x08 => "c",
+            0x09 => "t",
+            0x0a => "e",
+            0x0b => "r",
+            0x0c => " ",
+            0x0d => "n",
+            0x0e => "a",
+            0x0f => "m",
+            0x10 => "e",
+            0x11 => " ",
+            0x12 => "h",
+            0x13 => "e",
+            0x14 => "r",
+            0x15 => "e"
+          )
         end
       end
 
@@ -184,45 +228,59 @@ describe GodOfThunderSave do
         end
 
         it "truncates to 22 characters" do
-          should eq("a very long name to be")
+          should eq(
+            0x00 => "a",
+            0x01 => " ",
+            0x02 => "v",
+            0x03 => "e",
+            0x04 => "r",
+            0x05 => "y",
+            0x06 => " ",
+            0x07 => "l",
+            0x08 => "o",
+            0x09 => "n",
+            0x0a => "g",
+            0x0b => " ",
+            0x0c => "n",
+            0x0d => "a",
+            0x0e => "m",
+            0x0f => "e",
+            0x10 => " ",
+            0x11 => "t",
+            0x12 => "o",
+            0x13 => " ",
+            0x14 => "b",
+            0x15 => "e"
+          )
         end
       end
     end
 
     context "with a new health value" do
-      let(:pos) { 0x63 }
-      let(:bytes) { 1 }
-
       before(:each) do
         god_of_thunder_save.health = 130
         write!
       end
 
-      it { should eq("\x82") }
+      it { should eq(0x63 => "\x82") }
     end
 
     context "with a new magic value" do
-      let(:pos) { 0x64 }
-      let(:bytes) { 1 }
-
       before(:each) do
         god_of_thunder_save.magic = 120
         write!
       end
 
-      it { should eq("\x78") }
+      it { should eq(0x64 => "\x78") }
     end
 
     context "with a new jewels value" do
-      let(:pos) { 0x65 }
-      let(:bytes) { 2 }
-
       before(:each) do
         god_of_thunder_save.jewels = 420
         write!
       end
 
-      it { should eq("\xa4\x01") }
+      it { should eq(0x65 => "\xa4", 0x66 => "\x01") }
     end
 
     context "with a new keys value" do
@@ -234,7 +292,7 @@ describe GodOfThunderSave do
         write!
       end
 
-      it { should eq("\x45") }
+      it { should eq(0x67 => "\x45") }
     end
 
     context "with a new score value" do
@@ -246,7 +304,7 @@ describe GodOfThunderSave do
         write!
       end
 
-      it { should eq("\x69\x7a\x00\x00") }
+      it { should eq(0x70 => "i", 0x71 => "z") }
     end
 
     context "with a new enchanted_apple value" do
@@ -258,7 +316,7 @@ describe GodOfThunderSave do
         write!
       end
 
-      it { should eq("\x01") }
+      it { should eq(0x69 => "\x01") }
     end
 
     context "with a new lightning_power value" do
@@ -270,7 +328,7 @@ describe GodOfThunderSave do
         write!
       end
 
-      it { should eq("\x02") }
+      it { should eq(0x69 => "\x02") }
     end
 
     context "with a new winged_boots value" do
@@ -282,7 +340,7 @@ describe GodOfThunderSave do
         write!
       end
 
-      it { should eq("\x04") }
+      it { should eq(0x69 => "\x04") }
     end
 
     context "with a new wind_power value" do
@@ -294,7 +352,7 @@ describe GodOfThunderSave do
         write!
       end
 
-      it { should eq("\x08") }
+      it { should eq(0x69 => "\x08") }
     end
 
     context "with a new amulet_of_protection value" do
@@ -306,7 +364,7 @@ describe GodOfThunderSave do
         write!
       end
 
-      it { should eq("\x10") }
+      it { should eq(0x69 => "\x10") }
     end
 
     context "with a new thunder_power value" do
@@ -318,7 +376,7 @@ describe GodOfThunderSave do
         write!
       end
 
-      it { should eq("\x20") }
+      it { should eq(0x69 => "\x20") }
     end
   end
 end
