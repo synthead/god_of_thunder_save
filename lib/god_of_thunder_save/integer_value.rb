@@ -1,6 +1,7 @@
 class GodOfThunderSave
   class IntegerValue
     INTEGER_DIRECTIVES = {
+      1 => "C",
       2 => "v",
       4 => "V"
     }.freeze
