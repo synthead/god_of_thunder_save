@@ -65,6 +65,78 @@ describe GodOfThunderSave do
     end
   end
 
+  describe "#name" do
+    subject(:name) { god_of_thunder_save.name }
+
+    it { should eq("god_of_thunder_save") }
+  end
+
+  describe "#health" do
+    subject(:health) { god_of_thunder_save.health }
+
+    it { should eq(150) }
+  end
+
+  describe "#magic" do
+    subject(:magic) { god_of_thunder_save.magic}
+
+    it { should eq(0) }
+  end
+
+  describe "#jewels" do
+    subject(:jewels) { god_of_thunder_save.jewels }
+
+    it { should eq(0) }
+  end
+
+  describe "#keys" do
+    subject(:keys) { god_of_thunder_save.keys }
+
+    it { should eq(0) }
+  end
+
+  describe "#score" do
+    subject(:score) { god_of_thunder_save.score }
+
+    it { should eq(0) }
+  end
+
+  describe "#enchanted_apple" do
+    subject(:enchanted_apple) { god_of_thunder_save.enchanted_apple }
+
+    it { should eq(false) }
+  end
+
+  describe "#lightning_power" do
+    subject(:lightning_power) { god_of_thunder_save.lightning_power }
+
+    it { should eq(false) }
+  end
+
+  describe "#winged_boots" do
+    subject(:winged_boots) { god_of_thunder_save.winged_boots }
+
+    it { should eq(false) }
+  end
+
+  describe "#wind_power" do
+    subject(:wind_power) { god_of_thunder_save.wind_power }
+
+    it { should eq(false) }
+  end
+
+  describe "#amulet_of_protection" do
+    subject(:amulet_of_protection) { god_of_thunder_save.amulet_of_protection }
+
+    it { should eq(false) }
+  end
+
+  describe "#thunder_power" do
+    subject(:thunder_power) { god_of_thunder_save.thunder_power }
+
+    it { should eq(false) }
+  end
+
   context "for a written file" do
     let(:write!) { god_of_thunder_save.write! }
 
