@@ -284,9 +284,6 @@ describe GodOfThunderSave do
     end
 
     context "with a new keys value" do
-      let(:pos) { 0x67 }
-      let(:bytes) { 1 }
-
       before(:each) do
         god_of_thunder_save.keys = 69
         write!
@@ -296,9 +293,6 @@ describe GodOfThunderSave do
     end
 
     context "with a new score value" do
-      let(:pos) { 0x70 }
-      let(:bytes) { 4 }
-
       before(:each) do
         god_of_thunder_save.score = 31337
         write!
@@ -308,9 +302,6 @@ describe GodOfThunderSave do
     end
 
     context "with a new enchanted_apple value" do
-      let(:pos) { 0x69 }
-      let(:bytes) { 1 }
-
       before(:each) do
         god_of_thunder_save.enchanted_apple = true
         write!
@@ -320,9 +311,6 @@ describe GodOfThunderSave do
     end
 
     context "with a new lightning_power value" do
-      let(:pos) { 0x69 }
-      let(:bytes) { 1 }
-
       before(:each) do
         god_of_thunder_save.lightning_power = true
         write!
@@ -332,9 +320,6 @@ describe GodOfThunderSave do
     end
 
     context "with a new winged_boots value" do
-      let(:pos) { 0x69 }
-      let(:bytes) { 1 }
-
       before(:each) do
         god_of_thunder_save.winged_boots = true
         write!
@@ -344,9 +329,6 @@ describe GodOfThunderSave do
     end
 
     context "with a new wind_power value" do
-      let(:pos) { 0x69 }
-      let(:bytes) { 1 }
-
       before(:each) do
         god_of_thunder_save.wind_power = true
         write!
@@ -356,9 +338,6 @@ describe GodOfThunderSave do
     end
 
     context "with a new amulet_of_protection value" do
-      let(:pos) { 0x69 }
-      let(:bytes) { 1 }
-
       before(:each) do
         god_of_thunder_save.amulet_of_protection = true
         write!
@@ -368,9 +347,6 @@ describe GodOfThunderSave do
     end
 
     context "with a new thunder_power value" do
-      let(:pos) { 0x69 }
-      let(:bytes) { 1 }
-
       before(:each) do
         god_of_thunder_save.thunder_power = true
         write!
