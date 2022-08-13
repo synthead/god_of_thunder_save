@@ -1,12 +1,12 @@
-require "god_of_thunder_save/integer_16_value"
+require "god_of_thunder_save/integer_value"
 require "god_of_thunder_save/string_value"
 
 class GodOfThunderSave
   ENTRIES = {
     name: StringValue.new(pos: 0, length: 22),
-    health: Integer16Value.new(pos: 0x63),
-    jewels: Integer16Value.new(pos: 0x65),
-    score: Integer16Value.new(pos: 0x6c)
+    health: IntegerValue.new(pos: 0x63, bytes: 2),
+    jewels: IntegerValue.new(pos: 0x65, bytes: 2),
+    score: IntegerValue.new(pos: 0x70, bytes: 2)
   }.freeze
 
   attr_reader :path
