@@ -7,6 +7,7 @@ Gem::Specification.new do |s|
   s.email       = "synthead@gmail.com"
   s.files       = [
     "lib/god_of_thunder_save.rb",
+    "lib/god_of_thunder_save/bitmask_value.rb",
     "lib/god_of_thunder_save/integer_value.rb",
     "lib/god_of_thunder_save/string_value.rb"
   ]

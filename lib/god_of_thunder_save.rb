@@ -1,3 +1,4 @@
+require "god_of_thunder_save/bitmask_value"
 require "god_of_thunder_save/integer_value"
 require "god_of_thunder_save/string_value"
 
@@ -8,6 +9,12 @@ class GodOfThunderSave
     magic: IntegerValue.new(pos: 0x64, bytes: 1),
     jewels: IntegerValue.new(pos: 0x65, bytes: 2),
     keys: IntegerValue.new(pos: 0x67, bytes: 1),
+    enchanted_apple: BitmaskValue.new(pos: 0x69, bitmask: 0x01),
+    lightning_power: BitmaskValue.new(pos: 0x69, bitmask: 0x02),
+    winged_boots: BitmaskValue.new(pos: 0x69, bitmask: 0x04),
+    wind_power: BitmaskValue.new(pos: 0x69, bitmask: 0x08),
+    amulet_of_protection: BitmaskValue.new(pos: 0x69, bitmask: 0x10),
+    thunder_power: BitmaskValue.new(pos: 0x69, bitmask: 0x20),
     score: IntegerValue.new(pos: 0x70, bytes: 4)
   }.freeze
 
