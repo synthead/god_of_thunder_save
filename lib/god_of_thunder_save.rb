@@ -31,8 +31,8 @@ class GodOfThunderSave
   end
 
   def attributes
-    ENTRIES.keys.each_with_object({}) do |entry_name, hash|
-      hash[entry_name] = instance_variable_get(:"@#{entry_name}")
+    ENTRIES.keys.to_h do |entry_name|
+      [entry_name, instance_variable_get(:"@#{entry_name}")]
     end
   end
 
