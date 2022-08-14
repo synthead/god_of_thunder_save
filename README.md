@@ -55,7 +55,7 @@ So you want to contribute!  Great!  Here are some resources to get started!
 
 All setters and getters are defined in the `ENTRIES` Hash here:
 
-https://github.com/synthead/god_of_thunder_save/blob/928491d785321b5e65b25066ac98bc96e1c73ee9/lib/god_of_thunder_save.rb#L8-L21
+https://github.com/synthead/god_of_thunder_save/blob/448d3721e0c446bb801f89b7a5b1d6eeb9d5740d/lib/god_of_thunder_save.rb#L20-L34
 
 The keys define the setter and getter methods, and the value classes handle reading and writing the data.
 
