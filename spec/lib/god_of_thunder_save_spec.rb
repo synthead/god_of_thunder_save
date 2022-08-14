@@ -23,7 +23,7 @@ describe GodOfThunderSave do
   describe "VERSION" do
     subject(:version) { described_class::VERSION }
 
-    it { should eq("0.2.0") }
+    it { should eq("0.3.0") }
   end
 
   describe "#attributes" do
