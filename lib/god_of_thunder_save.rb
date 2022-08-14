@@ -7,10 +7,21 @@ require "god_of_thunder_save/string_value"
 require "god_of_thunder_save/version"
 
 class GodOfThunderSave
+  ITEM_ENUMS = {
+    nil => "\x00",
+    :enchanted_apple => "\x01",
+    :lightning_power => "\x02",
+    :winged_boots => "\x03",
+    :wind_power => "\x04",
+    :amulet_of_protection => "\x05",
+    :thunder_power => "\x06"
+  }.freeze
+
   ENTRIES = {
     name: StringValue.new(pos: 0x00, length: 22),
     health: IntegerValue.new(pos: 0x63, bytes: 1),
     magic: IntegerValue.new(pos: 0x64, bytes: 1),
+    item: EnumValue.new(pos: 0x68, enums: ITEM_ENUMS),
     jewels: IntegerValue.new(pos: 0x65, bytes: 2),
     keys: IntegerValue.new(pos: 0x67, bytes: 1),
     score: IntegerValue.new(pos: 0x70, bytes: 4),

@@ -34,6 +34,7 @@ describe GodOfThunderSave do
         name: "god_of_thunder_save",
         health: 150,
         magic: 0,
+        item: nil,
         jewels: 0,
         keys: 0,
         score: 0,
@@ -87,6 +88,12 @@ describe GodOfThunderSave do
     subject(:magic) { god_of_thunder_save.magic}
 
     it { should eq(0) }
+  end
+
+  describe "#item" do
+    subject(:item) { god_of_thunder_save.item}
+
+    it { should be_nil }
   end
 
   describe "#jewels" do
@@ -278,6 +285,15 @@ describe GodOfThunderSave do
       end
 
       it { should eq(0x64 => "\x78") }
+    end
+
+    context "with a new item value" do
+      before(:each) do
+        god_of_thunder_save.item = :lightning_power
+        write!
+      end
+
+      it { should eq(0x68 => "\x02") }
     end
 
     context "with a new jewels value" do
