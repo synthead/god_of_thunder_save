@@ -29,6 +29,7 @@ save.attributes
 {:name=>"god_of_thunder_save",
  :health=>145,
  :magic=>130,
+ :item=>:enchanted_apple,
  :jewels=>420,
  :keys=>69,
  :score=>31337,
