@@ -36,22 +36,22 @@ class GodOfThunderSave
     end
   end
 
-  def write!
-    File.open(path, File::RDWR) do |file|
+  def read!
+    File.open(path) do |file|
       ENTRIES.each do |entry_name, entry|
-        memory_value = instance_variable_get(:"@#{entry_name}")
-        entry.write(file, memory_value)
+        file_value = entry.read(file)
+        instance_variable_set(:"@#{entry_name}", file_value)
       end
     end
 
     self
   end
 
-  def read!
-    File.open(path) do |file|
+  def write!
+    File.open(path, File::RDWR) do |file|
       ENTRIES.each do |entry_name, entry|
-        file_value = entry.read(file)
-        instance_variable_set(:"@#{entry_name}", file_value)
+        memory_value = instance_variable_get(:"@#{entry_name}")
+        entry.write(file, memory_value)
       end
     end
 
