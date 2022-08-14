@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "god_of_thunder_save/bitmask_value"
+require "god_of_thunder_save/enum_value"
 require "god_of_thunder_save/integer_value"
 require "god_of_thunder_save/string_value"
 require "god_of_thunder_save/version"
