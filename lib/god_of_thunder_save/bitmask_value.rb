@@ -22,7 +22,7 @@ class GodOfThunderSave
 
       byte &= inverted_bitmask
       byte += bitmask if data
-      byte = [byte].pack("C")
+      byte = byte.chr
 
       file.seek(pos)
       file.write(byte)
