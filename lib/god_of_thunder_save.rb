@@ -34,7 +34,7 @@ class GodOfThunderSave
   }.freeze
 
   attr_reader :path
-  ENTRIES.keys.each { |entry| attr_accessor entry }
+  attr_accessor *ENTRIES.keys
 
   def initialize(path)
     @path = path
